@@ -38,7 +38,7 @@ const Header=()=>{
             <div className="header-nav">
                 <div className="header-nav-item" onClick={handleAuthentication}>
                     <span className="header-nav-item-line-1">
-                        Hello
+                        Hello {user?.email}
                     </span>
                         <span className="header-nav-item-line-2">
                        {user?'Sign out':'Sign in'}

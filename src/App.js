@@ -7,6 +7,8 @@ import Checkout from "./Component/Checkout";
 import Login from "./Component/Login";
 import {auth} from "./firebase";
 import {useStateValue} from "./Context/StateProvider";
+import Payment from "./Component/Payment";
+import Orders from "./Component/Orders";
 
 
 function App() {
@@ -42,6 +44,14 @@ function App() {
                   </Route>
                   <Route exact path="/login" >
                       <Login/>
+                  </Route>
+                  <Route exact path="/payment" >
+                      <Header/>
+                      <Payment/>
+                  </Route>
+                  <Route exact path="/orders" >
+                      <Header/>
+                      <Orders/>
                   </Route>
 
               </Switch>

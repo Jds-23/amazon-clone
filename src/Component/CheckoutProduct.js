@@ -3,7 +3,7 @@ import {Icon} from "rsuite";
 import "../CheckoutProduct.css";
 import {useStateValue} from "../Context/StateProvider";
 
-const CheckoutProduct=({title,price,rating,image,id})=>{
+const CheckoutProduct=({title,price,rating,image,id,hideButton})=>{
     const [{basket},dispatch]=useStateValue();
     const removeFromBasket=()=>{
         dispatch({
@@ -28,7 +28,7 @@ const CheckoutProduct=({title,price,rating,image,id})=>{
                 <div className="checkoutProduct-rating">
                     {Array(rating).fill().map((_, i) => (<Icon icon="star"/>))}
                 </div>
-                <button onClick={removeFromBasket}>Remove from basket</button>
+                {!hideButton&&(<button onClick={removeFromBasket}>Remove from basket</button>)}
             </div>
         </div>
     )
