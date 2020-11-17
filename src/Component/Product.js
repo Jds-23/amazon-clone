@@ -8,7 +8,6 @@ import {useStateValue} from "../Context/StateProvider";
 const Product=({title,price,rating,image,id})=>{
     const [{basket},dispatch]=useStateValue();
 
-    console.log(basket);
 
     const addToBasket=()=>{
         dispatch({

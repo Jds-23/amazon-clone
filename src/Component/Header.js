@@ -2,12 +2,22 @@ import React from "react";
 import 'rsuite/dist/styles/rsuite-default.css';
 import "../Header.css";
 import {Icon} from "rsuite";
-import {Link} from "react-router-dom";
+import {Link,useHistory} from "react-router-dom";
 import {useStateValue} from "../Context/StateProvider";
+import {auth} from "../firebase";
 
 
 const Header=()=>{
-    const [{basket},dispatch]=useStateValue();
+    const [{basket,user},dispatch]=useStateValue();
+    const history=useHistory();
+    const handleAuthentication=()=>{
+        if(user){
+            auth.signOut();
+        }
+        else{
+            history.push("/login")
+        }
+    }
 
     return(
         <div className="header">
@@ -26,12 +36,12 @@ const Header=()=>{
                 </div>
             </div>
             <div className="header-nav">
-                <div className="header-nav-item">
+                <div className="header-nav-item" onClick={handleAuthentication}>
                     <span className="header-nav-item-line-1">
                         Hello
                     </span>
-                    <span className="header-nav-item-line-2">
-                        Sign in
+                        <span className="header-nav-item-line-2">
+                       {user?'Sign out':'Sign in'}
                     </span>
                 </div>
 
