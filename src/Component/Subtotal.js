@@ -1,11 +1,12 @@
 import React from  "react";
 import CurrencyFormat from "react-currency-format";
-import "../Subtotal.css";
+import "./Css/Subtotal.css";
 import {useStateValue} from "../Context/StateProvider";
 import {getBasketTotal} from "../reducer";
 import {useHistory} from "react-router-dom";
 
 const Subtotal=()=>{
+    // eslint-disable-next-line
     const [{basket},dispatch]=useStateValue();
     const history=useHistory();
 
@@ -27,10 +28,12 @@ const Subtotal=()=>{
                 value={getBasketTotal(basket)}
                 displayType={"text"}
                 thousandSeparator={true}
-                prefix={"$ "}
+                prefix={"₹ "}
             />
 
-            <button onClick={()=>history.push("/payment")}>Proceed to Checkout</button>
+            <button onClick={()=> {!basket?.length?alert("No item in found in your cart"):
+                history.push("/payment")
+            }}>Proceed to Checkout</button>
         </div>
     )
 }

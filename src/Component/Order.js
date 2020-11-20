@@ -1,12 +1,14 @@
 import React from "react";
 import CheckoutProduct from "./CheckoutProduct";
-import "../Order.css";
+import "./Css/Order.css";
 import CurrencyFormat from "react-currency-format";
+
 
 const Order=({order})=>{
     return(
-        <div className="order">
+        <div className="order" key={order.id}>
             <h3>Order</h3>
+
             <p>{order.id}</p>
             {order.data.basket?.map(item=>(
                 <CheckoutProduct
@@ -15,7 +17,7 @@ const Order=({order})=>{
                     price={item.price}
                     rating={item.rating}
                     image={item.image}
-                    key={item.key}
+                    key={item.id}
                     hideButton
                 />
             ))}
@@ -24,10 +26,10 @@ const Order=({order})=>{
                     <h4 className="order-total"> Order Total: {value}</h4>
                 )}
                 decimalScale={2}
-                value={0}
+                value={order?.data.amount}
                 displayType={"text"}
                 thousandSeparator={true}
-                prefix={"$ "}
+                prefix={"₹ "}
             />
 
         </div>

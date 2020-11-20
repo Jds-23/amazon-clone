@@ -1,9 +1,10 @@
 import React from "react";
-import "../Payment.css";
+import "./Css/Payment.css";
 import {useStateValue} from "../Context/StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
 import {Link,useHistory} from "react-router-dom";
 import {db} from "../firebase";
+import {getBasketTotal} from "../reducer";
 import firebase from "firebase";
 
 const Payment=()=>{
@@ -16,7 +17,9 @@ const Payment=()=>{
             .collection('orders')
             .doc()
             .set({
-                basket: basket
+                basket: basket,
+                amount: getBasketTotal(basket),
+                timestamp:firebase.firestore.FieldValue.serverTimestamp()
             });
         dispatch({
             type:'EMPTY_BASKET'
@@ -55,7 +58,8 @@ const Payment=()=>{
                                 price={item.price}
                                 rating={item.rating}
                                 image={item.image}
-                                key={item.key}
+                                key={item.id}
+                                hideButton
                             />
                         ))}
                     </div>
@@ -67,7 +71,7 @@ const Payment=()=>{
                     </div>
 
                     <div className="payment-details">
-                        <button className="payment-proceed" onClick={payment}>Proceed</button>
+                        <button className="payment-proceed" onClick={payment}>Proceed to Pay</button>
                     </div>
 
                 </div>

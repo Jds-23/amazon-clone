@@ -1,8 +1,20 @@
-import React from "react";
-import "../Home.css";
+import React, {useEffect, useState} from "react";
+import "./Css/Home.css";
 import Product from "./Product";
+import {db} from "../firebase";
 
 const Home = ()=>{
+    const [products,setProducts]=useState([]);
+    useEffect(()=>{
+        db.collection('products')
+            .onSnapshot(snapshot => (
+                setProducts(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data()
+                })))
+            ))
+    },[]);
+
     return(
         <div className="home">
             <div className="home-container">
@@ -13,41 +25,49 @@ const Home = ()=>{
                 />
                 <div className="home-row">
                     <Product
-                        id={12121}
-                        key={12121}
-                        title="The Alchemist"
-                        price={299}
-                        rating={5}
-                        image="https://images-na.ssl-images-amazon.com/images/I/410llGwMZGL._SX328_BO1,204,203,200_.jpg"
+                        id={products[0]?.id}
+                        key={products[0]?.id}
+                        title={products[0]?.data.title}
+                        price={products[0]?.data.price}
+                        rating={products[0]?.data.rating}
+                        image={products[0]?.data.image}
                     />
                     <Product
-                        id={12232}
-                        key={12232}
-                        title="Ikigai: The Japanese secret to a long and happy life"
-                        price={359}
-                        rating={3}
-                        image="https://images-na.ssl-images-amazon.com/images/I/51T8OXMiB5L._SX356_BO1,204,203,200_.jpg"
+                        id={products[1]?.id}
+                        key={products[1]?.id}
+                        title={products[1]?.data.title}
+                        price={products[1]?.data.price}
+                        rating={products[1]?.data.rating}
+                        image={products[1]?.data.image}
                     />
+
                 </div>
                 <div className="home-row">
                     <Product
-                        id={12179}
-                        key={12179}
-                        title="The 4-Hour Work Week: Escape the 9-5, Live Anywhere and Join the New Rich"
-                        price={209}
-                        rating={5}
-                        image="https://m.media-amazon.com/images/I/51iGkLC6jhL.jpg"
+                        id={products[2]?.id}
+                        key={products[2]?.id}
+                        title={products[2]?.data.title}
+                        price={products[2]?.data.price}
+                        rating={products[2]?.data.rating}
+                        image={products[2]?.data.image}
                     /> <Product
-                        id={12178}
-                        key={12178}
-                        title="Guitar"
-                        price={209}
-                        rating={5}
-                        image="https://m.media-amazon.com/images/I/31lBhW50VML.__AC_SY200_.jpg"
-                    />
+                    id={products[3]?.id}
+                    key={products[3]?.id}
+                    title={products[3]?.data.title}
+                    price={products[3]?.data.price}
+                    rating={products[3]?.data.rating}
+                    image={products[3]?.data.image}
+                />
                 </div>
                 <div className="home-row">
-                    <Product/>
+                    <Product
+                        id={products[4]?.id}
+                        key={products[4]?.id}
+                        title={products[4]?.data.title}
+                        price={products[4]?.data.price}
+                        rating={products[4]?.data.rating}
+                        image={products[4]?.data.image}
+                    />
                 </div>
             </div>
         </div>

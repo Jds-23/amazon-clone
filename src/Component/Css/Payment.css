@@ -18,6 +18,17 @@
     margin: 0 20px;
     border-bottom: 1px solid lightgray;
 }
+
+@media (max-width: 570px) {
+
+    .payment-section{
+        display: flex;
+        padding: 20px;
+        margin: 0;
+        border-bottom: 1px solid lightgray;
+    }
+}
+
 .payment-title{
     flex: 0.2;
     padding-right: 10px;
@@ -25,13 +36,10 @@
 .payment-address,.payment-items{
     flex: 0.8;
 }
-.payment-proceed{
+button.payment-proceed{
     background: #f0c14b;
-    border-radius: 2px;
-    width: 100%;
-    height: 30px;
     border: 1px solid;
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
-    color: #111
+    color: #111;
 }

@@ -12,12 +12,12 @@ import Orders from "./Component/Orders";
 
 
 function App() {
+    // eslint-disable-next-line
     const [{},dispatch]=useStateValue();
 
     useEffect(()=>{
         auth.onAuthStateChanged(authUser=>{
-            console.log("The user >>>> ",authUser);
-            if (authUser){
+             if (authUser){
                 dispatch({
                     type: 'SET_USER',
                     user: authUser
@@ -29,6 +29,7 @@ function App() {
                 })
             }
         })
+        // eslint-disable-next-line
     },[])
   return (
       <Router>

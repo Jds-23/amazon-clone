@@ -4,6 +4,18 @@
     background-color: white;
     height: max-content;
 }
+
+@media (max-width: 570px) {
+    .checkout{
+        display: flex;
+        padding: 10px;
+        background-color: white;
+        height: max-content;
+        flex-wrap: wrap;
+    }
+
+
+}
 .checkout-ad{
     width: 100%;
     margin-bottom: 10px;

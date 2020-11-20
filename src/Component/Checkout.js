@@ -1,14 +1,21 @@
 import React from "react";
-import "../Checkout.css";
+import "./Css/Checkout.css";
 import Subtotal from "./Subtotal";
 import {useStateValue} from "../Context/StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
+import {useHistory} from "react-router-dom";
+
 
 const Checkout=()=>{
+    // eslint-disable-next-line
     const [{basket,user},dispatch]=useStateValue();
+    const history=useHistory();
+    if (!user){
+        history.push("/login");
+    }
 
     return(
-        <div className="checkout">
+        <div className="checkout" >
             <div className="checkout-left">
                 <img
                     className="checkout-ad"
@@ -27,7 +34,7 @@ const Checkout=()=>{
                             price={item.price}
                             rating={item.rating}
                             image={item.image}
-                            key={item.key}
+                            key={item.id}
                         />
                     ))}
 

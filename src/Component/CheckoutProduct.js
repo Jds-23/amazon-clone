@@ -1,9 +1,10 @@
 import React from "react";
-import {Icon} from "rsuite";
-import "../CheckoutProduct.css";
+import "./Css/CheckoutProduct.css";
 import {useStateValue} from "../Context/StateProvider";
+import StarRateIcon from '@material-ui/icons/StarRate';
 
 const CheckoutProduct=({title,price,rating,image,id,hideButton})=>{
+    // eslint-disable-next-line
     const [{basket},dispatch]=useStateValue();
     const removeFromBasket=()=>{
         dispatch({
@@ -13,7 +14,7 @@ const CheckoutProduct=({title,price,rating,image,id,hideButton})=>{
     }
 
     return(
-        <div className="checkoutProduct">
+        <div className="checkoutProduct" key={id}>
             <img
                 src={image}
                 alt=""
@@ -22,11 +23,11 @@ const CheckoutProduct=({title,price,rating,image,id,hideButton})=>{
             <div className="checkoutProduct-info">
                 <p className="checkoutProduct-title">{title}</p>
                 <p className="checkoutProduct-price">
-                    <small>$</small>
+                    <small>₹</small>
                     <strong>{price}</strong></p>
 
                 <div className="checkoutProduct-rating">
-                    {Array(rating).fill().map((_, i) => (<Icon icon="star"/>))}
+                    {Array(rating).fill().map((_, i) => (<StarRateIcon key={i}/>))}
                 </div>
                 {!hideButton&&(<button onClick={removeFromBasket}>Remove from basket</button>)}
             </div>

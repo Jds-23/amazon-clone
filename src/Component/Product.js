@@ -1,36 +1,41 @@
 import React from "react";
-import 'rsuite/dist/styles/rsuite-default.css';
-import "../Product.css";
-import {Icon} from "rsuite";
+import "./Css/Product.css";
+import StarRateIcon from '@material-ui/icons/StarRate';
 import {useStateValue} from "../Context/StateProvider";
 
 
 const Product=({title,price,rating,image,id})=>{
-    const [{basket},dispatch]=useStateValue();
-
+    // eslint-disable-next-line
+    const [{user,basket},dispatch]=useStateValue();
 
     const addToBasket=()=>{
-        dispatch({
-            type:'ADD_TO_BASKET',
-            item:{
-                id: id,
-                title: title,
-                image: image,
-                price: price,
-                rating: rating,
-            },
-        })
+        if(!user){
+            alert("You must login");
+        }
+        else
+        {
+            dispatch({
+                type: 'ADD_TO_BASKET',
+                item: {
+                    id: id,
+                    title: title,
+                    image: image,
+                    price: price,
+                    rating: rating,
+                },
+            })
+        }
     }
     return(
-        <div className="product" >
+        <div className="product" key={id}>
             <div className="product-info">
-                <h6>{title}</h6>
+                <h3>{title}</h3>
                 <p className="product-price">
                     <small>&#8377;</small>
                     <strong>{price}</strong>
                 </p>
                 <div className="product-rating">
-                    {Array(rating).fill().map((_,i)=>( <Icon icon="star"/>))}
+                    {Array(rating).fill().map((_,i)=>( <StarRateIcon key={i}/>))}
                 </div>
             </div>
 
